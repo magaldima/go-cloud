@@ -249,6 +249,7 @@ func (s *subscription) SendAcks(ctx context.Context, ids []driver.AckID) error {
 			if err := msg.Ack(); err != nil {
 				return err
 			}
+			delete(s.pendingMsgs, id)
 		}
 	}
 	return nil
